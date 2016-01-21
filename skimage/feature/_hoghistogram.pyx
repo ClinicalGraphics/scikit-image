@@ -70,7 +70,9 @@ cdef float cell_hog(double[:, ::1] magnitude,
 
             total += magnitude[cell_row_index, cell_column_index]
 
-    return total / (cell_rows * cell_columns)
+    if total:
+        return total / (cell_rows * cell_columns)
+    return 0.
 
 def hog_histograms(double[:, ::1] gradient_columns,
                    double[:, ::1] gradient_rows,
